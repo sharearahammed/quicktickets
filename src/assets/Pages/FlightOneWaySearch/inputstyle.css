@@ -1,0 +1,11 @@
+.custom-textfield {
+  width: 100%;
+}
+
+.custom-textfield .MuiOutlinedInput-root {
+  height: 48px;
+}
+
+.custom-textfield .MuiInputLabel-root {
+  top: -3px;
+}

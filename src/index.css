@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Mukta", sans-serif !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  body {
+    background-color: white;
+    height: auto;
+    position: static;
+  }
+}
+
+body {
+  background-color: #ECECEC;
+  height: 100vh;
+  position: relative;
+}
+
+/* @media only screen and (min-width: 1200px) {
+  .MuiContainer-root {
+    max-width: 1240px !important;
+  }
+} */
+
+:root {
+  --primary-color: #E34825;
+  --blush--pink: #ffe0e7;
+  --secondary-color: #f186b6;
+  --basic-color: #fe99a6;
+  --basic-light-color: #ffefef;
+  --pink-color: #f27c96;
+  --softpink-color: #ffebed;
+  --black-color: #474748;
+  --charcoal-color: #444542;
+  --lightblack-color: #8c8080;
+  --purple-color: #702c8b;
+  --purplelight-color: #a650c8;
+  --lightpink-color: #ffeff3;
+  --cotton-candy-pink: #ffeaef;
+  --lightRose-color: #f6adb6;
+  --yellow-color: #fcb148;
+  --orange-color: #e77d00;
+  --gray-color: #584660;
+  --lightgray-color: #d8d8d8;
+  --graycool-color: #8f8f98;
+  --darkGray-color: #202124;
+  --slateGray-color: #5f6368;
+  --cool-slate: #cbd5e1;
+  --fog-gray-color: #888888;
+  --warmGray-color: #9c9797;
+  --pewter-gray-color: #a3a4a9;
+  --darkPurpleGray-color: #3d3a49;
+  --charcoal-gray-color: #3c4258;
+  --platinum-gray: #dadce0;
+  --bluepastel-color: #849ec7;
+  --light-pastel-purple: #faeeff;
+  --grayish-blue: #acaeb6;
+  --whisper-gray: #f0f0f0;
+  --dark-desaturated-blue: #525371;
+  --error-bg-color: #fff1f4;
+  --error-color: #e00d00;
+  --darkblack-color: #202124;
+  --oceanblue-color: #18457b;
+  --blue-gray: #b6b6cc;
+  --lightblue-color: #cdedff;
+  --light-salmon-color: #ffe9e2;
+  --misty-rose-color: #ffeef2;
+  --text-light: #707070;
+  --text-color: #222222;
+  --navy-blue: #1b233c;
+  --lavender-blush: #fff8f9;
+  --light-bg: #d1e9ff;
+  --emerald-green: #00ae06;
+  --mint-cream: #e6ffed;
+  --pewter-color: #aeb6bb;
+  --pastel-pink: #f5c6d1;
+  --baby-pink: #fff1ed;
+  --vivid-pink: #e2136e;
+  --cotton-candy-pink: #ffedf5;
+  --lime-green: #8ffc3c30;
+  --forest-green: #2e9e0b;
+  /* --Gainsboro-color: #dedede; */
+  --Gainsboro-color: #f4f4f4;
+  --very-light: #c8c6c6;
+  --light-blue-gray: #f5f7fa;
+  --bright-orange: #ffa805;
+  --border-color: #dedede;
+  --ghost-white: #f8f8f8;
+  --border: #dadce0;
+  --text-black: #444542;
+}
