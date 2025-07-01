@@ -1,0 +1,511 @@
+{
+  "success": true,
+  "message": "Your flight current location",
+  "data": {
+    "live": [
+      {
+        "flight": {
+          "number": "EY450",
+          "callSign": "ETD450",
+          "marketingCarrier": "WY",
+          "marketingAirline": "OMAN AIR",
+          "airCraft": "BOEING 787-9"
+        },
+        "departure": {
+          "airport": "AUH",
+          "airportName": "Dhabi Intl Airport",
+          "latitude": "24.4330006",
+          "longitude": "54.6511002",
+          "terminal": null,
+          "scheduledTime": "2025-07-01T10:40:00",
+          "actualTime": "2025-07-01 10:47:07",
+          "city": "Abu Dhabi",
+          "countryCode": "AE",
+          "dayStatus": "Morning"
+        },
+        "arrival": {
+          "airport": "SYD",
+          "airportName": "Sydney Kingsford Smith Intl Airport",
+          "latitude": "-33.9460983",
+          "longitude": "151.1770020",
+          "terminal": null,
+          "scheduledTime": "2025-07-02T06:10:00",
+          "estimatedTime": null,
+          "actualTime": null,
+          "city": "Sydney",
+          "countryCode": "AU",
+          "dayStatus": "Early Morning"
+        },
+        "status": {
+          "live": true,
+          "landingStatus": "On Sky"
+        },
+        "transit": [
+          [
+            {
+              "transit": "4H 30Min"
+            },
+            {
+              "transit": "10H 10Min"
+            }
+          ]
+        ],
+        "distance": {
+          "flightDuration": "13H 30Min",
+          "destinationTotal": 12061,
+          "fromDeparture": null,
+          "toArrival": null,
+          "fromDeparturePercentage": "0.000",
+          "toArrivalPercentage": "0.000"
+        },
+        "tracks": [
+          {
+            "timestamp": null,
+            "latitude": null,
+            "longitude": null,
+            "altitude": null,
+            "groundSpeed": null,
+            "verticalSpeed": null,
+            "track": null,
+            "squawk": null,
+            "source": null
+          },
+          {
+            "timestamp": "2025-07-01T09:00:53Z",
+            "latitude": 12.91198,
+            "longitude": 66.58947,
+            "altitude": 34975,
+            "groundSpeed": 475,
+            "verticalSpeed": 0,
+            "track": 141,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T09:02:06Z",
+            "latitude": 12.78597,
+            "longitude": 66.69337,
+            "altitude": 34975,
+            "groundSpeed": 475,
+            "verticalSpeed": 0,
+            "track": 141,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T09:03:42Z",
+            "latitude": 12.62058,
+            "longitude": 66.82955,
+            "altitude": 34975,
+            "groundSpeed": 475,
+            "verticalSpeed": 0,
+            "track": 141,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T09:04:33Z",
+            "latitude": 12.53292,
+            "longitude": 66.90163,
+            "altitude": 34975,
+            "groundSpeed": 475,
+            "verticalSpeed": 0,
+            "track": 141,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T09:05:24Z",
+            "latitude": 12.44624,
+            "longitude": 66.97283,
+            "altitude": 34975,
+            "groundSpeed": 475,
+            "verticalSpeed": 0,
+            "track": 141,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T09:07:32Z",
+            "latitude": 12.22573,
+            "longitude": 67.15371,
+            "altitude": 34975,
+            "groundSpeed": 475,
+            "verticalSpeed": 0,
+            "track": 141,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T09:20:28Z",
+            "latitude": 10.88902,
+            "longitude": 68.24197,
+            "altitude": 34975,
+            "groundSpeed": 475,
+            "verticalSpeed": 0,
+            "track": 141,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T09:20:47Z",
+            "latitude": 10.85705,
+            "longitude": 68.26784,
+            "altitude": 34975,
+            "groundSpeed": 475,
+            "verticalSpeed": 0,
+            "track": 141,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T09:21:32Z",
+            "latitude": 10.77863,
+            "longitude": 68.33125,
+            "altitude": 34975,
+            "groundSpeed": 475,
+            "verticalSpeed": 0,
+            "track": 141,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T09:31:26Z",
+            "latitude": 9.75171,
+            "longitude": 69.15778,
+            "altitude": 34975,
+            "groundSpeed": 475,
+            "verticalSpeed": 0,
+            "track": 141,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T09:32:13Z",
+            "latitude": 9.67175,
+            "longitude": 69.22181,
+            "altitude": 34975,
+            "groundSpeed": 475,
+            "verticalSpeed": 0,
+            "track": 141,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T09:33:13Z",
+            "latitude": 9.56819,
+            "longitude": 69.30467,
+            "altitude": 34975,
+            "groundSpeed": 475,
+            "verticalSpeed": 0,
+            "track": 141,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T09:41:42Z",
+            "latitude": 8.6913,
+            "longitude": 70.00356,
+            "altitude": 34975,
+            "groundSpeed": 485,
+            "verticalSpeed": 0,
+            "track": 141,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-07-01T09:57:06Z",
+            "latitude": 7.3708,
+            "longitude": 71.55173,
+            "altitude": 35000,
+            "groundSpeed": 479,
+            "verticalSpeed": -64,
+            "track": 127,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-07-01T10:22:32Z",
+            "latitude": 4.44169,
+            "longitude": 73.29818,
+            "altitude": 34975,
+            "groundSpeed": 482,
+            "verticalSpeed": -64,
+            "track": 150,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-07-01T10:23:28Z",
+            "latitude": 4.33373,
+            "longitude": 73.35945,
+            "altitude": 35000,
+            "groundSpeed": 480,
+            "verticalSpeed": -64,
+            "track": 150,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-07-01T10:28:08Z",
+            "latitude": 3.79163,
+            "longitude": 73.66669,
+            "altitude": 35000,
+            "groundSpeed": 479,
+            "verticalSpeed": -64,
+            "track": 150,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-07-01T10:54:22Z",
+            "latitude": 0.76211,
+            "longitude": 75.37772,
+            "altitude": 35000,
+            "groundSpeed": 476,
+            "verticalSpeed": 0,
+            "track": 150,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-07-01T11:00:31Z",
+            "latitude": 0.05665,
+            "longitude": 75.77531,
+            "altitude": 34975,
+            "groundSpeed": 473,
+            "verticalSpeed": 64,
+            "track": 150,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-07-01T11:08:33Z",
+            "latitude": -0.87282,
+            "longitude": 76.29921,
+            "altitude": 35000,
+            "groundSpeed": 480,
+            "verticalSpeed": 0,
+            "track": 150,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-07-01T11:20:02Z",
+            "latitude": -2.17627,
+            "longitude": 77.03639,
+            "altitude": 34975,
+            "groundSpeed": 481,
+            "verticalSpeed": 0,
+            "track": 150,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-07-01T11:21:30Z",
+            "latitude": -2.34843,
+            "longitude": 77.13305,
+            "altitude": 34975,
+            "groundSpeed": 481,
+            "verticalSpeed": 0,
+            "track": 150,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T11:47:05Z",
+            "latitude": -4.78774,
+            "longitude": 79.51125,
+            "altitude": 34975,
+            "groundSpeed": 481,
+            "verticalSpeed": 0,
+            "track": 132,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T11:47:19Z",
+            "latitude": -4.80799,
+            "longitude": 79.53304,
+            "altitude": 34975,
+            "groundSpeed": 481,
+            "verticalSpeed": 0,
+            "track": 132,
+            "squawk": null,
+            "source": "ESTIMATED"
+          },
+          {
+            "timestamp": "2025-07-01T11:49:33Z",
+            "latitude": -5.01202,
+            "longitude": 79.75275,
+            "altitude": 34975,
+            "groundSpeed": 481,
+            "verticalSpeed": 0,
+            "track": 132,
+            "squawk": null,
+            "source": "ESTIMATED"
+          }
+        ]
+      }
+    ],
+    "arrived": [
+      {
+        "flight": {
+          "number": "WY318",
+          "callSign": "OMA318",
+          "marketingCarrier": "WY",
+          "marketingAirline": "OMAN AIR",
+          "airCraft": "BOEING 737MAX 8 PASSENGER"
+        },
+        "departure": {
+          "airport": "DAC",
+          "airportName": "Hazrat Shahjalal Intl Airport",
+          "latitude": "23.8433470",
+          "longitude": "90.3977830",
+          "terminal": null,
+          "scheduledTime": "2025-06-30T16:05:00",
+          "actualTime": "2025-06-30 16:35:42",
+          "city": "Dhaka",
+          "countryCode": "BD",
+          "dayStatus": "Afternoon"
+        },
+        "arrival": {
+          "airport": "MCT",
+          "airportName": "Muscat International Airport",
+          "latitude": "23.5932999",
+          "longitude": "58.2844009",
+          "terminal": null,
+          "scheduledTime": "2025-06-30T18:55:00",
+          "estimatedTime": "2025-06-30 18:43:12",
+          "actualTime": "2025-06-30 18:42:43",
+          "city": "Muscat",
+          "countryCode": "OM",
+          "dayStatus": "Evening"
+        },
+        "status": {
+          "live": true,
+          "landingStatus": "On Sky"
+        },
+        "transit": [
+          [
+            {
+              "transit": "4H 30Min"
+            },
+            {
+              "transit": "10H 10Min"
+            }
+          ]
+        ],
+        "distance": {
+          "flightDuration": "04H 50Min",
+          "destinationTotal": 3262,
+          "fromDeparture": 1491,
+          "toArrival": 1786,
+          "fromDeparturePercentage": "45.708",
+          "toArrivalPercentage": "54.752"
+        },
+        "tracks": [
+          {
+            "timestamp": "2025-06-30T12:04:14Z",
+            "latitude": 23.18394,
+            "longitude": 79.48797,
+            "altitude": 34000,
+            "groundSpeed": 485,
+            "verticalSpeed": 0,
+            "track": 270,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-06-30T12:05:13Z",
+            "latitude": 23.18536,
+            "longitude": 79.34571,
+            "altitude": 34000,
+            "groundSpeed": 484,
+            "verticalSpeed": 0,
+            "track": 270,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-06-30T12:05:26Z",
+            "latitude": 23.18567,
+            "longitude": 79.31467,
+            "altitude": 34000,
+            "groundSpeed": 484,
+            "verticalSpeed": 0,
+            "track": 270,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-06-30T12:05:31Z",
+            "latitude": 23.18578,
+            "longitude": 79.30132,
+            "altitude": 34000,
+            "groundSpeed": 484,
+            "verticalSpeed": 64,
+            "track": 270,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-06-30T12:29:36Z",
+            "latitude": 23.17552,
+            "longitude": 75.78664,
+            "altitude": 34000,
+            "groundSpeed": 474,
+            "verticalSpeed": 64,
+            "track": 266,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-06-30 18:31:55",
+            "latitude": 23.15578,
+            "longitude": 75.45471,
+            "altitude": 34000,
+            "groundSpeed": 480,
+            "verticalSpeed": 0,
+            "track": 266,
+            "squawk": null,
+            "source": "ADSB"
+          },
+          {
+            "timestamp": "2025-07-01T03:48:52.880Z",
+            "latitude": null,
+            "longitude": null,
+            "altitude": null,
+            "groundSpeed": null,
+            "verticalSpeed": null,
+            "track": null,
+            "squawk": null,
+            "source": "fallback"
+          },
+          {
+            "timestamp": "2025-07-01T06:52:35.621Z",
+            "latitude": null,
+            "longitude": null,
+            "altitude": null,
+            "groundSpeed": null,
+            "verticalSpeed": null,
+            "track": null,
+            "squawk": null,
+            "source": "fallback"
+          },
+          {
+            "timestamp": "2025-07-01T08:11:31.379Z",
+            "latitude": null,
+            "longitude": null,
+            "altitude": null,
+            "groundSpeed": null,
+            "verticalSpeed": null,
+            "track": null,
+            "squawk": null,
+            "source": "fallback"
+          }
+        ]
+      }
+    ]
+  }
+}

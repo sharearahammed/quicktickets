@@ -1,0 +1,7 @@
+.slick-list {
+    margin: 0 -10px; /* Adjust based on gap size */
+  }
+  .slick-slide > div {
+    padding: 0 30px 0 10px; /* Creates gap between slides */
+  }
+  
