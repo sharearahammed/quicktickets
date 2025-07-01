@@ -14,10 +14,17 @@ import {
 } from "@mui/material";
 import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
 import { useQuery } from "@tanstack/react-query";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Polyline,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-
+import LocalAirportIcon from "@mui/icons-material/LocalAirport";
+import planeIconImg from "../../png/plane.png";
 // Fix leaflet icon issue
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
@@ -28,6 +35,13 @@ L.Icon.Default.mergeOptions({
   iconRetinaUrl: markerIcon2x,
   iconUrl: markerIcon,
   shadowUrl: markerShadow,
+});
+
+const planeIcon = new L.Icon({
+  iconUrl: planeIconImg,
+  iconSize: [32, 32], // Adjust size as needed
+  iconAnchor: [16, 16], // Anchor at center for rotation or accurate positioning
+  popupAnchor: [0, -10],
 });
 
 const getStatusColor = (status) => {
@@ -48,21 +62,36 @@ const fetchFlightData = async () => {
   return res.json();
 };
 
-const FlightMap = ({ lat, lng }) => (
-  <MapContainer
-    center={[lat, lng]}
-    zoom={6}
-    style={{ height: 400, width: "100%" }}
-  >
-    <TileLayer
-      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    />
-    <Marker position={[lat, lng]}>
-      <Popup>Live Plane Location</Popup>
-    </Marker>
-  </MapContainer>
-);
+const FlightMap = ({ lat, lng, tracks = [] }) => {
+  const position = [lat, lng];
+
+  const trackPath = tracks
+    .map((t) => [t.lat || t.latitude, t.lng || t.longitude])
+    .filter(([lat, lng]) => lat && lng);
+
+  return (
+    <MapContainer
+      center={position}
+      zoom={6}
+      style={{ height: 400, width: "100%" }}
+    >
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+
+      {/* Draw flight path */}
+      {trackPath.length > 1 && (
+        <Polyline positions={trackPath} color="blue" weight={3} />
+      )}
+
+      {/* Current plane position */}
+      <Marker position={position} icon={planeIcon}>
+        <Popup>Live Plane Location</Popup>
+      </Marker>
+    </MapContainer>
+  );
+};
 
 const FlightCard = ({ flight }) => {
   const [openMap, setOpenMap] = useState(false);
@@ -92,7 +121,7 @@ const FlightCard = ({ flight }) => {
           minute: "2-digit",
         })
       : "N/A";
-      
+
   return (
     <Card sx={{ mb: 4, boxShadow: 3 }}>
       <CardContent>
@@ -226,7 +255,11 @@ const FlightCard = ({ flight }) => {
           <DialogTitle>Live Plane Location</DialogTitle>
           <DialogContent>
             {location?.latitude && location?.longitude ? (
-              <FlightMap lat={location.latitude} lng={location.longitude} />
+              <FlightMap
+                lat={location.latitude}
+                lng={location.longitude}
+                tracks={tracks}
+              />
             ) : (
               <Typography>No live location available.</Typography>
             )}
@@ -278,3 +311,7 @@ const FlightPage = () => {
 };
 
 export default FlightPage;
+
+// Claude ai
+// Grok ***
+// cursor.com
