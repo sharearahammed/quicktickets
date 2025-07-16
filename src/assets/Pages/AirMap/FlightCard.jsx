@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Card,
   CardContent,
@@ -11,7 +11,10 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
+  Drawer,
+  IconButton,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
 import { useQuery } from "@tanstack/react-query";
 import {
@@ -20,6 +23,7 @@ import {
   Marker,
   Popup,
   Polyline,
+  useMap,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -37,13 +41,6 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow,
 });
 
-const planeIcon = new L.Icon({
-  iconUrl: planeIconImg,
-  iconSize: [32, 32], // Adjust size as needed
-  iconAnchor: [16, 16], // Anchor at center for rotation or accurate positioning
-  popupAnchor: [0, -10],
-});
-
 const getStatusColor = (status) => {
   switch (status) {
     case "ARRIVED":
@@ -57,13 +54,90 @@ const getStatusColor = (status) => {
 
 const fetchFlightData = async () => {
   const res = await fetch("./flightData.json");
-  console.log("res", res);
   if (!res.ok) throw new Error("Failed to load flight data");
   return res.json();
 };
 
-const FlightMap = ({ lat, lng, tracks = [] }) => {
-  const position = [lat, lng];
+const planeIcon = new L.Icon({
+  iconUrl: planeIconImg,
+  iconSize: [32, 32], // Adjust size as needed
+  iconAnchor: [16, 16], // Anchor at center for rotation or accurate positioning
+  popupAnchor: [0, -10],
+});
+
+const AnimatedPlane = ({
+  lat,
+  lng,
+  arrival,
+  speedKnots,
+  onPositionUpdate,
+  onStart,
+  onEnd,
+}) => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!arrival?.latitude || !arrival?.longitude || !map) return;
+
+    const startLat = parseFloat(lat);
+    const startLng = parseFloat(lng);
+    const endLat = parseFloat(arrival.latitude);
+    const endLng = parseFloat(arrival.longitude);
+
+    const startLatLng = L.latLng(startLat, startLng);
+    const endLatLng = L.latLng(endLat, endLng);
+
+    const marker = L.marker(startLatLng, { icon: planeIcon }).addTo(map);
+
+    const distance = startLatLng.distanceTo(endLatLng); // meters
+    const speedKmh = (speedKnots || 100) * 1.852;
+    const speedMs = (speedKmh * 1000) / 3600;
+    const duration = distance / speedMs;
+
+    let start = null;
+    onStart?.();
+
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = (timestamp - start) / (duration * 1000);
+
+      if (progress >= 1) {
+        marker.setLatLng(endLatLng);
+        onPositionUpdate?.([endLat, endLng]);
+        onEnd?.();
+        return;
+      }
+
+      const currentLat = startLat + (endLat - startLat) * progress;
+      const currentLng = startLng + (endLng - startLng) * progress;
+
+      marker.setLatLng([currentLat, currentLng]);
+      onPositionUpdate?.([currentLat, currentLng]);
+
+      requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+
+    return () => {
+      marker.remove();
+    };
+  }, [lat, lng, arrival, speedKnots, map]);
+
+  return null;
+};
+
+// ✅ Main Map Component
+const FlightMap = ({ lat, lng, tracks = [], arrival }) => {
+  const [currentPos, setCurrentPos] = useState([lat, lng]);
+  const [isMoving, setIsMoving] = useState(false);
+
+  const arrivalLat = parseFloat(arrival?.latitude);
+  const arrivalLng = parseFloat(arrival?.longitude);
+
+  const arrivalPosition = [arrivalLat, arrivalLng];
+  const lastTrack = tracks?.[tracks.length - 1];
+  const speedKnots = lastTrack?.groundSpeed || 0;
 
   const trackPath = tracks
     .map((t) => [t.lat || t.latitude, t.lng || t.longitude])
@@ -71,31 +145,56 @@ const FlightMap = ({ lat, lng, tracks = [] }) => {
 
   return (
     <MapContainer
-      center={position}
+      center={[lat, lng]}
       zoom={6}
       style={{ height: 400, width: "100%" }}
+      whenCreated={(mapInstance) => {
+        setTimeout(() => {
+          mapInstance.invalidateSize(); // helps inside hidden tabs/drawers
+        }, 500);
+      }}
     >
       <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        attribution="&copy; OpenStreetMap contributors"
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {/* Draw flight path */}
       {trackPath.length > 1 && (
         <Polyline positions={trackPath} color="blue" weight={3} />
       )}
 
-      {/* Current plane position */}
-      <Marker position={position} icon={planeIcon}>
-        <Popup>Live Plane Location</Popup>
-      </Marker>
+      {/* Line from start to current */}
+      <Polyline
+        positions={[[lat, lng], currentPos]}
+        pathOptions={{ color: "blue", weight: 3 }}
+      />
+
+      {/* Line from current to arrival */}
+      <Polyline
+        positions={[currentPos, arrivalPosition]}
+        pathOptions={{
+          color: isMoving ? "yellow" : "red",
+          dashArray: "1 10",
+          weight: 3,
+          height:3
+        }}
+      />
+
+      <AnimatedPlane
+        lat={lat}
+        lng={lng}
+        arrival={arrival}
+        speedKnots={speedKnots}
+        onPositionUpdate={setCurrentPos}
+        onStart={() => setIsMoving(true)}
+        onEnd={() => setIsMoving(false)}
+      />
     </MapContainer>
   );
 };
 
 const FlightCard = ({ flight }) => {
   const [openMap, setOpenMap] = useState(false);
-  console.log("flightttttttttttttttttttt", flight);
   const {
     flight: flightInfo,
     departure,
@@ -246,25 +345,35 @@ const FlightCard = ({ flight }) => {
           </Typography>
         </Box>
 
-        <Dialog
+        <Drawer
+          anchor="right"
           open={openMap}
           onClose={() => setOpenMap(false)}
-          maxWidth="md"
-          fullWidth
+          PaperProps={{ sx: { width: { xs: "100%", sm: 600 }, p: 2 } }}
         >
-          <DialogTitle>Live Plane Location</DialogTitle>
-          <DialogContent>
-            {location?.latitude && location?.longitude ? (
-              <FlightMap
-                lat={location.latitude}
-                lng={location.longitude}
-                tracks={tracks}
-              />
-            ) : (
-              <Typography>No live location available.</Typography>
-            )}
-          </DialogContent>
-        </Dialog>
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+            mb={2}
+          >
+            <Typography variant="h6">Live Plane Location</Typography>
+            <IconButton onClick={() => setOpenMap(false)}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+
+          {location?.latitude && location?.longitude ? (
+            <FlightMap
+              lat={location.latitude}
+              lng={location.longitude}
+              tracks={tracks}
+              arrival={arrival}
+            />
+          ) : (
+            <Typography>No live location available.</Typography>
+          )}
+        </Drawer>
       </CardContent>
     </Card>
   );
@@ -275,20 +384,17 @@ const FlightPage = () => {
     queryKey: ["flightData"],
     queryFn: fetchFlightData,
   });
-  console.log("data", data);
+
   if (isLoading) return <Typography>Loading...</Typography>;
   if (isError) return <Typography>Error loading data.</Typography>;
 
-  const { live = [], arrived = [] } = data.data;
+  const { live = [] } = data.data;
 
   const enrichWithLiveLocation = (flight) => {
-    console.log("flight", flight);
     const lastTrack = flight.tracks?.[flight.tracks.length - 1];
     const location = lastTrack
       ? { latitude: lastTrack.lat, longitude: lastTrack.lng }
       : null;
-    console.log("lastTrack ", lastTrack);
-    console.log("location ", location);
     return { ...flight, location };
   };
 
@@ -297,12 +403,6 @@ const FlightPage = () => {
       {live.map((flight, index) => (
         <FlightCard
           key={`live-${index}`}
-          flight={enrichWithLiveLocation(flight)}
-        />
-      ))}
-      {arrived.map((flight, index) => (
-        <FlightCard
-          key={`arrived-${index}`}
           flight={enrichWithLiveLocation(flight)}
         />
       ))}
